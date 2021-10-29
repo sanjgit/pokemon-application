@@ -1,6 +1,6 @@
 <div class="container mt-100" ng-if="true">
     <div class="row align-items-center mb-5">
-        <div class="col-sm-4">
+        <div class="col-sm-3">
             <div class="row align-items-center">
                 <label class="col-sm-2">Search:</label>
                 <div class="col-sm-9">
@@ -17,8 +17,26 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-3"></div>
-        <div class="col-sm-6"></div>
+        <div class="col-sm-2">
+            <label>Sort By: </label>
+
+            <select [(ngModel)]="selectedSort" (ngModelChange)="onSortOptionChange()">
+                <option *ngFor="let option of sortOptions" [value]="option">{{ option }}</option>
+            </select>
+        </div>
+        <div class="col-sm-7">
+            <mat-paginator
+                style="float: right"
+                #paginator
+                [length]="totalCount"
+                [pageIndex]="currentPage"
+                [pageSize]="pageSize"
+                [pageSizeOptions]="pageSizeOptions"
+                (page)="pageChanged($event)"
+                aria-label="Select page"
+            >
+            </mat-paginator>
+        </div>
     </div>
 
     <div class="row">
@@ -42,6 +60,17 @@
                     </div>
                 </div>
             </div>
+            <mat-paginator
+                style="float: right"
+                #paginator
+                [length]="totalCount"
+                [pageIndex]="currentPage"
+                [pageSize]="pageSize"
+                [pageSizeOptions]="pageSizeOptions"
+                (page)="pageChanged($event)"
+                aria-label="Select page"
+            >
+            </mat-paginator>
         </div>
     </div>
 </div>
