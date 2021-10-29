@@ -1,0 +1,48 @@
+.content {
+    position: absolute;
+    top: 200px;
+    bottom: 200px;
+    left: 0px;
+    right: 0px;
+    overflow: auto;
+    height: calc(100% - 200px);
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 20px;
+    align-items: stretch;
+
+    .card {
+        border: 1px solid #ccc;
+        box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+        text-align: center;
+    }
+    .card:hover {
+        animation: bounce 0.5s linear;
+        cursor: pointer;
+    }
+}
+.grid > .card img {
+    max-width: 100%;
+}
+.text {
+    padding: 0 20px 20px;
+    color: gray;
+}
+
+@keyframes bounce {
+    20% {
+        transform: translateY(-6px);
+    }
+    40% {
+        transform: translateY(0px);
+    }
+
+    80% {
+        transform: translateY(-2px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
