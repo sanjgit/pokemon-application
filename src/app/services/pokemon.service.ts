@@ -1,11 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 @Injectable({
     providedIn: 'root',
 })
 export class PokemonService {
     constructor(private httpClient: HttpClient) {}
+
     private _pokemons: any[] = [];
     get pokemons(): any[] {
         return this._pokemons;

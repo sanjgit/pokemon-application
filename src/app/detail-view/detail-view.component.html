@@ -1,1 +1,106 @@
-<p>detail-view works!</p>
+<ng-container *ngIf="pokemon">
+    <div class="bg mt-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 offset-sm-2">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <img
+                                        [src]="pokemon.sprites.front_default"
+                                        [alt]="pokemon.name"
+                                        class="img-fluid w-100 h-100 d-block"
+                                    />
+                                </div>
+                                <div class="col-sm-8">
+                                    <div class="mt-2">
+                                        <h1>{{ pokemon.name | titlecase }}</h1>
+                                        <span
+                                            *ngFor="let type of pokemon.types"
+                                            class="badge badge-info-color border rounded-pill me-1 mt-2"
+                                        >
+                                            {{ type.type.name | titlecase }}
+                                        </span>
+                                    </div>
+                                    <ul class="list-group list-group-flush mt-4" style="width: 20rem">
+                                        <li class="list-group-item bg-transparent">
+                                            Experience <b class="float-end">{{ pokemon.base_experience }}</b>
+                                        </li>
+                                        <li class="list-group-item bg-transparent">
+                                            Height <b class="float-end">{{ pokemon.height }}</b>
+                                        </li>
+                                        <li class="list-group-item bg-transparent">
+                                            Weight <b class="float-end">{{ pokemon.weight }}</b>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-3">
+        <div class="row">
+            <div class="col-sm-8 offset-sm-2">
+                <!-- abilities information -->
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h4 class="card-title">Abilities</h4>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li *ngFor="let ability of pokemon.abilities" class="list-group-item">
+                            {{ ability.ability.name | titlecase }}
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- stats information -->
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h4 class="card-title">Stats</h4>
+                        <div *ngFor="let stat of pokemon.stats" class="row mt-3">
+                            <div class="col-sm-2">
+                                <h6 class="text-sm-end mt-1">{{ stat.stat.name | titlecase }}</h6>
+                            </div>
+                            <div class="col-sm-10">
+                                <div class="progress" style="height: 30px">
+                                    <div
+                                        class="progress-bar progress-bar-striped"
+                                        role="progressbar"
+                                        style="height: 30px"
+                                        [style.width]="stat.base_stat + '%'"
+                                        aria-valuemin="0"
+                                        aria-valuemax="100"
+                                    >
+                                        <b>{{ stat.base_stat }}</b>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- moves -->
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h4 class="card-title">Moves</h4>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <span
+                                *ngFor="let move of pokemon.moves"
+                                class="badge badge-move-color border rounded-pill me-1"
+                            >
+                                {{ move.move.name | titlecase }}
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>
