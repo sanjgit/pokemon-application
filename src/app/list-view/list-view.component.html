@@ -44,6 +44,7 @@
             <div class="grid">
                 <div
                     class="card"
+                    [ngClass]="{ 'loading-skeleton': isLoading }"
                     *ngFor="let pokemon of pokemonList; let i = index"
                     [routerLink]="['/view', pokemon.name]"
                 >

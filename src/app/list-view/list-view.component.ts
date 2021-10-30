@@ -16,6 +16,7 @@ export class ListViewComponent implements OnInit {
     pageSize = this.pageSizeOptions[0];
     sortOptions = ['Name', 'Height', 'Weight'];
     selectedSort: string = this.sortOptions[0];
+    isLoading = false;
     searchText = '';
     currentSessionStore = {
         page: this.currentPage,
@@ -94,6 +95,7 @@ export class ListViewComponent implements OnInit {
     getPokemons() {
         this.pokemonList = [];
         this.originalList = [];
+        this.isLoading = true;
         this.pokemonService
             .getPokemonList(this.pageSize, this.pageSize * this.currentPage)
             .subscribe((response: any) => {
@@ -106,6 +108,7 @@ export class ListViewComponent implements OnInit {
                         if (this.pokemonList.length == pokemansResult.length) {
                             this.originalList = [...this.pokemonList];
                             this.searchPokemon();
+                            this.isLoading = false;
                         }
                     });
                 });
